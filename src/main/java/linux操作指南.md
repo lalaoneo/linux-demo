@@ -1,5 +1,8 @@
 # Linux操作指南
 
+### linux操作
+    查看服务器CPU数量  ls -l /proc/acpi/processor/ | grep -v total | wc -l
+
 ### 安装centos7
     下载地址:http://mirrors.aliyun.com/centos/7.5.1804/isos/x86_64
 
@@ -9,14 +12,16 @@
     参考文档:https://www.cnblogs.com/kreo/p/4368811.html
 
 ### 创建文件夹
-    mkdir /home/service/docker/nginx/html
+    mkdir /home/service/docker/nginx
     mkdir /home/service/docker/nginx/conf
     
 ### 安装docker
     参考文档：http://www.cnblogs.com/yufeng218/p/8370670.html
 
-### 进入容器
+### docker通用
     命令：docker exec -it 6fed606745f8 /bin/sh
+    
+    docker logs -f container_id
     
 #### docker run命令
     -d: 后台运行容器，并返回容器ID
@@ -36,3 +41,67 @@
     
 ### 安装maven
     参考文档：https://www.cnblogs.com/HendSame-JMZ/p/6122188.html
+    
+### 安装zookeeper
+    docker search zookeeper
+    
+    docker pull jplock/zookeeper
+    
+    docker run -d --name zookeeper -h zookeeper -p 2181:2181 jplock/zookeeper:latest
+    
+### 安装redis
+    docker search redis
+    
+    docker pull redis
+    
+    docker run -d -p 6379:6379 --name redis redis:latest
+    
+### 安装mysql
+    docker search mysql
+    
+    docker pull mysql
+    
+    docker run -p 3306:3306 --name mysql -v /home/service/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=lalaoneo  -d mysql:latest
+    
+    参考文档:https://www.cnblogs.com/li5206610/p/9284647.html
+    
+### 安装nginx
+    docker search nginx
+    
+    docker pull nginx
+    
+    docker run -d -p 80:80 --name nginx -v /home/service/docker/nginx/html:/usr/share/nginx/html -v /home/service/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro -v /home/service/docker/nginx/conf/conf.d:/etc/nginx/conf.d nginx:latest
+    
+    拷贝容器中的数据,挂载出来
+    
+    docker cp abc148296167:/usr/share/nginx/html /home/service/docker/nginx/html/
+    
+    docker cp abc148296167:/etc/nginx/nginx.conf /home/service/docker/nginx/conf/
+    
+    docker cp abc148296167:/etc/nginx/conf.d /home/service/docker/nginx/conf/
+    
+### 安装tomcat
+    docker search tomcat
+    
+    docker pull tomcat
+    
+    docker run -d --name tomcat -p 8015:8080 tomcat:latest
+    
+    把war上传到对应文件中,把Tomcat的webapps挂载出来,需要挂载的时候再设置
+    -v /home/service/disconf/war/disconf-web.war:/usr/local/tomcat/webapps/disconf-web.war
+    
+    参考文档:https://blog.csdn.net/qq_32351227/article/details/78673591
+    
+### 安装kafka
+    docker search kafka
+    
+    docker pull wurstmeister/kafka
+    
+    docker run -d -p 9092:9092 --name kafka -e KAFKA_ZOOKEEPER_CONNECT="192.168.174.128:2181" -e KAFKA_ADVERTISED_HOST_NAME="192.168.174.128" -e LANG="en_US.UTF-8" wurstmeister/kafka:latest
+    
+    kafka连不上zookeeper解决办法：
+    pkill docker 
+    iptables -t nat -F 
+    ifconfig docker0 down 
+    brctl delbr docker0 
+    service docker restart
