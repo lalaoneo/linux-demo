@@ -35,7 +35,7 @@
     
     docker pull consul
     
-    启动：docker run -d -p 8500:8500 --name consul consul:latest consul agent -dev -client=0.0.0.0
+    docker run -d -p 8500:8500 --name consul consul:latest consul agent -dev -client=0.0.0.0
     
     踩坑：没有加-client=0.0.0.0，映射了端口但打不开UI，是因为consul容器中的8500端口默认只绑定在172.0.0.1上
     
