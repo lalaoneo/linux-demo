@@ -120,3 +120,6 @@
     启动：./${具体项目名称}.sh start
     
     停止：./${具体项目名称}.sh stop
+
+### 安装JDK8
+    参考文档：https://www.cnblogs.com/ocean-sky/p/8392444.html
