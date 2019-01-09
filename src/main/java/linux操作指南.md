@@ -2,6 +2,10 @@
 
 ### linux操作
     查看服务器CPU数量  ls -l /proc/acpi/processor/ | grep -v total | wc -l
+    
+    创建文件    touch file_name
+    
+    设置文件可执行     chmod +x file_name
 
 ### 安装centos7
     下载地址:http://mirrors.aliyun.com/centos/7.5.1804/isos/x86_64
@@ -35,10 +39,10 @@
     
     docker pull consul
     
-    docker run -d -p 8500:8500 --name consul consul:latest consul agent -dev -client=0.0.0.0
-    
     踩坑：没有加-client=0.0.0.0，映射了端口但打不开UI，是因为consul容器中的8500端口默认只绑定在172.0.0.1上
     
+    执行请移步shell脚本
+
 ### 安装maven
     参考文档：https://www.cnblogs.com/HendSame-JMZ/p/6122188.html
     
@@ -47,30 +51,28 @@
     
     docker pull jplock/zookeeper
     
-    docker run -d --name zookeeper -h zookeeper -p 2181:2181 jplock/zookeeper:latest
+    执行请移步shell脚本
     
 ### 安装redis
     docker search redis
     
     docker pull redis
     
-    docker run -d -p 6379:6379 --name redis redis:latest
+    执行请移步shell脚本
     
 ### 安装mysql
     docker search mysql
     
     docker pull mysql
     
-    docker run -p 3306:3306 --name mysql -v /home/service/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=lalaoneo  -d mysql:latest
-    
     参考文档:https://www.cnblogs.com/li5206610/p/9284647.html
+    
+    执行请移步shell脚本
     
 ### 安装nginx
     docker search nginx
     
     docker pull nginx
-    
-    docker run -d -p 80:80 --name nginx -v /home/service/docker/nginx/html:/usr/share/nginx/html -v /home/service/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro -v /home/service/docker/nginx/conf/conf.d:/etc/nginx/conf.d nginx:latest
     
     拷贝容器中的数据,挂载出来
     
@@ -80,28 +82,39 @@
     
     docker cp abc148296167:/etc/nginx/conf.d /home/service/docker/nginx/conf/
     
+    执行请移步shell脚本
+    
 ### 安装tomcat
     docker search tomcat
     
     docker pull tomcat
-    
-    docker run -d --name tomcat -p 8015:8080 tomcat:latest
     
     把war上传到对应文件中,把Tomcat的webapps挂载出来,需要挂载的时候再设置
     -v /home/service/disconf/war/disconf-web.war:/usr/local/tomcat/webapps/disconf-web.war
     
     参考文档:https://blog.csdn.net/qq_32351227/article/details/78673591
     
+    执行请移步shell脚本
+    
 ### 安装kafka
     docker search kafka
     
     docker pull wurstmeister/kafka
-    
-    docker run -d -p 9092:9092 --name kafka -e KAFKA_ZOOKEEPER_CONNECT="192.168.174.128:2181" -e KAFKA_ADVERTISED_HOST_NAME="192.168.174.128" -e LANG="en_US.UTF-8" wurstmeister/kafka:latest
     
     kafka连不上zookeeper解决办法：
     pkill docker 
     iptables -t nat -F 
     ifconfig docker0 down 
     brctl delbr docker0 
-    service docker restart
+    systemctl restart docker
+    
+    执行请移步shell脚本
+
+### shell脚本通用
+    mkdir /home/service/docker/${具体项目名称}/bin
+        
+    把github-->linux-demo的脚本上传到对应目录中
+    
+    启动：./${具体项目名称}.sh start
+    
+    停止：./${具体项目名称}.sh stop
