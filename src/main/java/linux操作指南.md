@@ -101,6 +101,8 @@
     
     docker pull wurstmeister/kafka
     
+    采坑：链接zookeeper的IP需要根据本地机器进行设置,否则会链接不上
+    
     kafka连不上zookeeper解决办法：
     pkill docker 
     iptables -t nat -F 
