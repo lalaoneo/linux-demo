@@ -123,3 +123,25 @@
 
 ### 安装JDK8
     参考文档：https://www.cnblogs.com/ocean-sky/p/8392444.html
+
+### 安装ElasticSearch
+    
+    docker search elasticsearch
+    
+    没有latest的TAG,需要指定版本号拉取,可以在docker hub上查询
+    docker pull elasticsearch:6.5.4
+    
+    start.spring.io-->搜索web，elasticsearch即可
+    
+    把elasticsearch.yml挂载出来: docker cp 33bbc8741bc1:/usr/share/elasticsearch/config/elasticsearch.yml /home/service/docker/elasticsearch/config/
+    
+    把jvm.options挂载出来：docker cp 33bbc8741bc1:/usr/share/elasticsearch/config/jvm.options /home/service/docker/elasticsearch/config/
+    
+    把data挂载出来：docker cp 33bbc8741bc1:/usr/share/elasticsearch/data /home/service/docker/elasticsearch/data
+    
+    修改jvm.options的内存,改小一点:-Xms256m -Xmx256m
+    
+    在elasticsearch.yml文件增加跨域配置: http.cors.enabled: true
+                                       http.cors.allow-origin: "*"
+    
+    参考文档: https://www.cnblogs.com/jianxuanbing/p/9410800.html
