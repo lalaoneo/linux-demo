@@ -131,8 +131,6 @@
     没有latest的TAG,需要指定版本号拉取,可以在docker hub上查询
     docker pull elasticsearch:6.5.4
     
-    start.spring.io-->搜索web，elasticsearch即可
-    
     把elasticsearch.yml挂载出来: docker cp 33bbc8741bc1:/usr/share/elasticsearch/config/elasticsearch.yml /home/service/docker/elasticsearch/config/
     
     把jvm.options挂载出来：docker cp 33bbc8741bc1:/usr/share/elasticsearch/config/jvm.options /home/service/docker/elasticsearch/config/
