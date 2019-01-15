@@ -145,3 +145,12 @@
                                        http.cors.allow-origin: "*"
     
     参考文档: https://www.cnblogs.com/jianxuanbing/p/9410800.html
+
+### 安装elasticsearch-head
+    
+    docker search elasticsearch-head
+    
+    没有latest的TAG,需要指定版本号拉取,可以在docker hub上查询
+    docker pull mobz/elasticsearch-head:5
+    
+    参考文档: https://www.cnblogs.com/jianxuanbing/p/9410800.html
