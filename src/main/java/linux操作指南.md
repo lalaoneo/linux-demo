@@ -154,6 +154,3 @@
     docker pull mobz/elasticsearch-head:5
     
     参考文档: https://www.cnblogs.com/jianxuanbing/p/9410800.html
-    
-    
-# 创建java-demo，不需要声明其他jar包，指定好包名，项目名词就可以了
