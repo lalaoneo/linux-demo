@@ -152,3 +152,15 @@
     docker pull mobz/elasticsearch-head:5
     
     参考文档: https://www.cnblogs.com/jianxuanbing/p/9410800.html
+
+### 安装elastic-job-lite-console
+    
+    参考文档：https://blog.csdn.net/lovelong8808/article/details/80393290
+    
+    需要打开端口：iptables -A INPUT -p tcp --dport 8899 -j ACCEPT
+    
+    service iptables save
+    
+    才可以访问虚拟机的系统
+    
+    需要在start.sh脚本最后一行末尾加一个 & ，让其后台运行
