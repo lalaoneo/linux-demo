@@ -164,3 +164,10 @@
     才可以访问虚拟机的系统
     
     需要在start.sh脚本最后一行末尾加一个 & ，让其后台运行
+    
+### 安装apollo
+* apollo安装：[参考文档](https://github.com/nobodyiam/apollo-build-scripts)
+
+* 在/etc/sysconfig/iptables增加端口8070:`-A INPUT -p tcp -m state --state NEW -m tcp --dport 8070 -j ACCEPT`
+
+* 定制apollo命令：`./demo.sh stop`
