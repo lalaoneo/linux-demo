@@ -202,6 +202,8 @@
 
 * 修改yml文件的elasticsearch为192.168.245.128
 
+* 导出logstash-sample.conf后增加stdin { }  stdout { } 进行测试,目前不通
+
 ### filebeat安装
 
 * `docker search filebeat`
