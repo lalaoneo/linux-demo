@@ -7,6 +7,10 @@
     
     设置文件可执行     chmod +x file_name
 
+### iptables
+
+    service iptables restart
+
 ### 安装centos7
     下载地址:http://mirrors.aliyun.com/centos/7.5.1804/isos/x86_64
 
@@ -171,3 +175,46 @@
 * 在/etc/sysconfig/iptables增加端口8070:`-A INPUT -p tcp -m state --state NEW -m tcp --dport 8070 -j ACCEPT`
 
 * 定制apollo命令：`./demo.sh stop`
+
+### 安装kibana
+
+* `docker search kibana`
+
+* `docker pull kibana:6.5.4`
+
+* 在iptables中增加端口5601,9200,重启iptables
+
+* 注意修改kibana.sh的IP地址
+
+### Logstash安装
+
+* `docker search logstash`
+
+* `docker pull logstash:6.5.4`
+
+* docker cp 8c7fc5a8729c:/usr/share/logstash/config/logstash-sample.conf /home/service/docker/logstash/conf
+
+* 把文件名logstash-sample.conf更改为logstash.conf `mv logstash-sample.conf logstash.conf`
+
+* 修改conf文件的localhost为192.168.245.128
+
+* docker cp 8c7fc5a8729c:/usr/share/logstash/config/logstash.yml /home/service/docker/logstash/conf
+
+* 修改yml文件的elasticsearch为192.168.245.128
+
+### filebeat安装
+
+* `docker search filebeat`
+
+* `docker pull prima/filebeat`
+
+* 在docker文件夹中创建filebeat/bin/filebeat.sh filebeat/conf/filebeat.yml
+
+* filebeat.yml的配置信息[参考文档](https://github.com/elastic/beats/edit/master/filebeat/filebeat.yml)
+    * 配置信息已经在项目的filebeat/filebeat.yml
+
+* 注意修改filebeat.yml对应logstash的IP地址
+
+* 在iptables打开端口5044,重启iptables
+
+* 需要开启apollo进行操作,测试时抓取apollo的日志
