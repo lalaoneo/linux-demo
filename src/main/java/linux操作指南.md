@@ -192,6 +192,8 @@
 
 * `docker pull logstash:6.5.4`
 
+* docker run -it --rm logstash:6.5.4 -e 'input { stdin { } } output { stdout { } }'
+
 * docker cp 8c7fc5a8729c:/usr/share/logstash/config/logstash-sample.conf /home/service/docker/logstash/conf
 
 * 把文件名logstash-sample.conf更改为logstash.conf `mv logstash-sample.conf logstash.conf`
@@ -202,7 +204,9 @@
 
 * 修改yml文件的elasticsearch为192.168.245.128
 
-* 导出logstash-sample.conf后增加stdin { }  stdout { } 进行测试,目前不通
+* 导出logstash-sample.conf后增加stdin { }  stdout { } 进行测试,目前不通,发现logstash镜像的配置文件在pipeline里,挂载错了
+
+* 注释掉logstash.conf的index,否则无法匹配索引名字
 
 ### filebeat安装
 
@@ -214,6 +218,8 @@
 
 * filebeat.yml的配置信息[参考文档](https://github.com/elastic/beats/edit/master/filebeat/filebeat.yml)
     * 配置信息已经在项目的filebeat/filebeat.yml
+
+* 复制filebeat.yml文件时,可能第一行的###################### Filebeat 会变成t，因为文件太长，注意修改一下
 
 * 注意修改filebeat.yml对应logstash的IP地址
 

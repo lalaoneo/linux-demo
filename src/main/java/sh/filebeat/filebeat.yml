@@ -160,7 +160,7 @@ filebeat.config.modules:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["192.168.245.128:5044"]
+  hosts: ["192.168.174.128:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

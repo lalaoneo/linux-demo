@@ -11,7 +11,7 @@ if [ "$1" = "start" ]; then
     if [ "$kibanaStatus" = "running" ]; then
         echo "kibana容器已经启动";
     else
-        runResult=`docker run -dt --name kibana -e ELASTICSEARCH_URL=http://192.168.245.128:9200 -p 5601:5601 kibana:6.5.4`;
+        runResult=`docker run -dt --name kibana -e ELASTICSEARCH_URL=http://192.168.174.128:9200 -p 5601:5601 kibana:6.5.4`;
         echo "$runResult";
 
         runResultLength=`expr length $runResult`;
