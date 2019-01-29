@@ -19,7 +19,7 @@ if [ "$1" = "start" ]; then
         if [ "$zookeeperStatus" = "running" ]; then
             echo "zookeeper容器已经启动";
 
-            runResult=`docker run -d -p 9092:9092 --name kafka -e KAFKA_ZOOKEEPER_CONNECT="192.168.245.128:2181" -e KAFKA_ADVERTISED_HOST_NAME="192.168.245.128" -e LANG="en_US.UTF-8" wurstmeister/kafka:latest`;
+            runResult=`docker run -d -p 9092:9092 --name kafka -e KAFKA_ZOOKEEPER_CONNECT="192.168.174.128:2181" -e KAFKA_ADVERTISED_HOST_NAME="192.168.174.128" -e LANG="en_US.UTF-8" wurstmeister/kafka:latest`;
             echo "$runResult";
 
             runResultLength=`expr length $runResult`;

@@ -198,11 +198,11 @@
 
 * 把文件名logstash-sample.conf更改为logstash.conf `mv logstash-sample.conf logstash.conf`
 
-* 修改conf文件的localhost为192.168.245.128
+* 修改conf文件的localhost为192.168.174.128
 
 * docker cp 8c7fc5a8729c:/usr/share/logstash/config/logstash.yml /home/service/docker/logstash/conf
 
-* 修改yml文件的elasticsearch为192.168.245.128
+* 修改yml文件的elasticsearch为192.168.174.128
 
 * 导出logstash-sample.conf后增加stdin { }  stdout { } 进行测试,目前不通,发现logstash镜像的配置文件在pipeline里,挂载错了
 
