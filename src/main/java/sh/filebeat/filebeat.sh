@@ -11,7 +11,7 @@ if [ "$1" = "start" ]; then
     if [ "$filebeatStatus" = "running" ]; then
         echo "filebeat容器已经启动";
     else
-        runResult=`docker run -dt --name filebeat -v /home/service/docker/filebeat/conf/filebeat.yml:/filebeat.yml --net=host prima/filebeat:latest`;
+        runResult=`docker run -dt --name filebeat -v /home/service/docker/filebeat/conf/filebeat.yml:/usr/share/filebeat/filebeat.yml -v /home/service/apollo-build-scripts-master/service/apollo-service.log:/usr/share/filebeat/logs/apollo-service.log:ro --net=host docker.elastic.co/beats/filebeat:6.5.4`;
         echo "$runResult";
 
         runResultLength=`expr length $runResult`;
