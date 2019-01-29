@@ -206,13 +206,15 @@
 
 * 导出logstash-sample.conf后增加stdin { }  stdout { } 进行测试,目前不通,发现logstash镜像的配置文件在pipeline里,挂载错了
 
-* 注释掉logstash.conf的index,否则无法匹配索引名字
+* 每次重启需要删除filebeat-*的索引,具体是啥看kibana的索引列表: `curl -XDELETE http://localhost:9200/filebeat-2019.01.29`
+
+* 修改logstash.conf的index,index => "filebeat-%{+YYYY.MM.dd}",因为调试已经产生了logstash-%{+YYYY.MM.dd},要么删除要么修改index
 
 ### filebeat安装
 
 * `docker search filebeat`
 
-* `docker pull prima/filebeat`
+* `docker pull docker.elastic.co/beats/filebeat:6.5.4`
 
 * 在docker文件夹中创建filebeat/bin/filebeat.sh filebeat/conf/filebeat.yml
 
