@@ -88,6 +88,8 @@
     
     执行请移步shell脚本
     
+    反向代理设置的tomcat.lori.com需要在hosts文件配置：IP tomcat.lori.com
+    
 ### 安装tomcat
     docker search tomcat
     
@@ -99,8 +101,6 @@
     参考文档:https://blog.csdn.net/qq_32351227/article/details/78673591
     
     执行请移步shell脚本
-    
-    反向代理设置的tomcat.lori.com需要在hosts文件配置：IP tomcat.lori.com
     
 ### 安装kafka
     docker search kafka
